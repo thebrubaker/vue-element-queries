@@ -8,7 +8,7 @@ I plan to replace ResizeSensor at some point, and there may be many, many bugs a
 
 **How To Use VueElementQuery**
 
-Take the package for a spin using `vue build example/index`
+Take the package for a spin using `vue build example`
 
 Install the plugin as you normally would with `Vue.use(VueElementQuery)`
 
