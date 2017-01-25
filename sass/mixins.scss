@@ -1,0 +1,29 @@
+$grid-columns: 12;
+
+@mixin span($columns, $grid-columns: $grid-columns) {
+  flex-basis: percentage($columns / $grid-columns);
+}
+
+@mixin query($breakpoints...) {
+  @each $width in $breakpoints {
+    &[min-width~="#{$width}px"] {
+      @content
+    }
+  }
+}
+
+@mixin min-width($breakpoints...) {
+  @each $width in $breakpoints {
+    &[min-width~="#{$width}px"] {
+      @content
+    }
+  }
+}
+
+@mixin max-width($breakpoints...) {
+  @each $width in $breakpoints {
+    &[max-width~="#{$width}px"] {
+      @content
+    }
+  }
+}
