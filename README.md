@@ -8,6 +8,8 @@ I plan to replace ResizeSensor at some point, and there may be many, many bugs a
 
 **How To Use VueElementQuery**
 
+Take the package for a spin using `vue build example/index`
+
 Install the plugin as you normally would with `Vue.use(VueElementQuery)`
 
 This makes the directive `v-query` available to you. Add this directive to the containing element you want your components to respond to.
@@ -32,7 +34,7 @@ This will watch the container and apply tags to the element for `min-width` and 
   .grid[min-width="500px"] .item {
     flex-basis: 50%;
   }
-  
+
 </style>
 ```
 
