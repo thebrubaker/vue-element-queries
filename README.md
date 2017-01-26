@@ -12,6 +12,12 @@ Take the package for a spin using `vue build example`
 
 Install the plugin as you normally would with `Vue.use(VueElementQuery)`
 
+```
+import VueElementQuery from 'vue-element-queries'
+
+Vue.use(VueElementQuery)
+```
+
 This makes the directive `v-query` available to you. Add this directive to the containing element you want your components to respond to.
 
 ```
