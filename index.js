@@ -1,15 +1,1 @@
-import VueElementQuery from './src/VueElementQuery'
-import ResizeSensor from 'css-element-queries/src/ResizeSensor'
-
-export default {
-  install (Vue, options) {
-    Vue.directive('query', {
-      inserted (element) {
-        new VueElementQuery(ResizeSensor, element)
-      },
-      unbind (element) {
-        ResizeSensor.detach(element)
-      }
-    })
-  }
-}
+module.exports = require('dist/Plugin.js')
