@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel" v-resize="breakpoints">
     <div class="panel__container">
       <div class="panel__body">
         <h1>Panel: Testing</h1>
@@ -10,8 +10,23 @@
 </template>
 
 <script>
-export default {
+import ResizeSensor from 'css-element-queries/src/ResizeSensor'
 
+const breakpoints = {
+  850: {
+    flexBasis: '50%'
+  },
+  1040: {
+    flexBasis: '33.33333333%'
+  }
+}
+
+export default {
+  data () {
+    return {
+      breakpoints
+    }
+  }
 }
 </script>
 

@@ -3,14 +3,12 @@
     <h1>Example Vue Element Query</h1>
     <label>Adjust the container width</label>
     <input type="number" name="width" v-model="adjustWidth" step="10">
+    <input type="checkbox" name="tick" v-model="tick">
     <div class="content">
-      <div v-query class="grid" :style="style">
+      <div class="grid" :style="style">
         <div class="row">
           <panel class="item"></panel>
-          <panel class="item"></panel>
-          <panel class="item"></panel>
-          <panel class="item"></panel>
-          <panel class="item"></panel>
+          <panel class="item" v-if="tick"></panel>
         </div>
       </div>
     </div>
@@ -27,7 +25,8 @@
     },
     data () {
       return {
-        adjustWidth: 1000
+        adjustWidth: 1000,
+        tick: true
       }
     },
     computed: {
