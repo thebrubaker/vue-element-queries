@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Example from './Example'
-import VueElementQuery from '../dist'
+import VueElementQuery from '../dist/Plugin'
 
 Vue.use(VueElementQuery)
 
