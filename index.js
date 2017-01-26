@@ -1,1 +1,1 @@
-module.exports = require('dist/Plugin.js')
+module.exports = require('./dist/Plugin.js')
