@@ -1,4 +1,4 @@
-import VueElementQuery from './VueElementQuery'
+import VueElementQuery from './src/VueElementQuery'
 import ResizeSensor from 'css-element-queries/src/ResizeSensor'
 
 export default {
