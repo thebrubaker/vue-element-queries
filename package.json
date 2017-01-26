@@ -1,6 +1,6 @@
 {
   "name": "vue-element-queries",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A Vue directive for using element queries to build responsive components.",
   "main": "index.js",
   "scripts": {
