@@ -79,8 +79,11 @@ export default class VueElementQuery {
    * @return {RegExp}
    */
   getScopeTag (element) {
-    // grab the scope tag from the element, such as `v-12jn123n123`
-    let scope = Object.keys(element.dataset).find(key => key.match(/v-/))
+    // grab the scope tag from the element, such as `vE2jn123n123`
+    let index = Object.keys(element.attributes).find(key => {
+      return element.attributes[key].name.match(/^data-v-/)
+    })
+    let scope = element.attributes[index].name
     if (!scope) {
       console.error('[VueElementQuery] Vue element queries only work on scoped stylesheets. Did you forget to add `scoped` to your stylesheet?', element)
       return null
