@@ -4,7 +4,7 @@
     <label>Adjust the container width</label>
     <input type="number" name="width" v-model="adjustWidth" step="10">
     <div class="content">
-      <div v-query class="grid" :style="style">
+<!--       <div v-query class="grid" :style="style">
         <div class="row">
           <panel class="item"></panel>
           <panel class="item"></panel>
@@ -12,18 +12,31 @@
           <panel class="item"></panel>
           <panel class="item"></panel>
         </div>
-      </div>
+      </div> -->
+      <grid :style="style">
+        <div class="row">
+          <responsive-panel class="item"></responsive-panel>
+          <responsive-panel class="item"></responsive-panel>
+          <responsive-panel class="item"></responsive-panel>
+          <responsive-panel class="item"></responsive-panel>
+          <responsive-panel class="item"></responsive-panel>
+        </div>
+      </grid>
     </div>
   </div>
 </template>
 
 <script>
   import Panel from './Panel'
+  import ResponsivePanel from './ResponsivePanel'
+  import Grid from './Grid'
 
   export default {
     name: 'VueElementQuery',
     components: {
-      Panel
+      Grid,
+      Panel,
+      ResponsivePanel
     },
     data () {
       return {
@@ -42,9 +55,8 @@
   }
 </script>
 
-<style lang="scss" scoped> // scoped is required
+<style lang="scss">
   @import './sass/grid';
-  @import './sass/mixins';
 
   * {
     box-sizing: border-box;
@@ -64,12 +76,17 @@
     margin-top: 10%;
     color: #444;
   }
+</style>
+
+<style lang="scss" scoped> // scoped is required
+  @import './sass/mixins';
 
   .item {
     @include span(12)
   }
 
   .grid {
+    margin-bottom: 20px;
     @include query(500) {
       .item {
         @include span(6)
