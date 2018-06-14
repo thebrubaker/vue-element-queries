@@ -1,4 +1,4 @@
-*This package is only a prototype for now. Let me know if you find this useful and I will continue to work on it.*
+_This package is only a prototype for now. Let me know if you find this useful and I will continue to work on it._
 
 Have you ever wanted to build a vue component that was responsive to the containing element, rather than the window size? Now you can :)
 
@@ -8,7 +8,7 @@ I plan to replace ResizeSensor at some point, and there may be many, many bugs a
 
 **How To Use VueElementQuery**
 
-Take the package for a spin using `vue build example`
+Take the package for a spin using the latest vue-cli `vue serve ./example`
 
 Install the plugin as you normally would with `Vue.use(VueElementQuery)`
 
@@ -44,7 +44,7 @@ This will watch the container and apply tags to the element for `min-width` and 
 </style>
 ```
 
-*Note: stylesheets must be scoped for the current implementation of vue-element-queries.*
+_Note: stylesheets must be scoped for the current implementation of vue-element-queries._
 
 Take a look at `Example.vue` in the example directory. You can use the sass mixins provided to clean up your css quite a bit.
 
