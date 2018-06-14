@@ -2,7 +2,11 @@
   "name": "vue-element-queries",
   "version": "0.1.13",
   "description": "A Vue directive for using element queries to build responsive components.",
-  "main": "index.js",
+  "main": "dist/vue-element-queries.common.js",
+  "files": [
+    "src",
+    "dist/*.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -28,14 +32,13 @@
   },
   "homepage": "https://github.com/thebrubaker/vue-element-queries#readme",
   "dependencies": {
-    "css-element-queries": "^0.4.0"
+    "css-element-queries": "^1.0.0"
   },
   "devDependencies": {
-    "css-loader": "^0.26.1",
-    "node-sass": "^4.3.0",
-    "sass-loader": "^4.1.1",
-    "vue": "^2.1.10",
-    "vue-style-loader": "^1.0.0",
-    "webpack": "^1.14.0"
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.3",
+    "vue": "^2.5.16",
+    "vue-style-loader": "^4.1.0",
+    "webpack": "^4.12.0"
   }
 }

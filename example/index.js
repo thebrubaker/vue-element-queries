@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Example from './Example'
-import VueElementQuery from '../dist/Plugin'
+import Vue from 'vue';
+import Example from './Example';
+import VueElementQuery from '../src';
 
-Vue.use(VueElementQuery)
+Vue.use(VueElementQuery);
 
 new Vue({
   el: '#app',
   components: {
-    Example
+    Example,
   },
-  render: h => h('example')
-})
+  render: h => h('example'),
+});

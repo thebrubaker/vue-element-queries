@@ -3,13 +3,13 @@ export default class VueElementQuery {
    * Constructor for the class
    * @param  {VueComponent} component
    */
-  constructor (ResizeSensor, element) {
-    this.ResizeSensor = ResizeSensor
+  constructor(ResizeSensor, element) {
+    this.ResizeSensor = ResizeSensor;
     this.breakpoints = {
       'min-width': [],
-      'max-width': []
-    }
-    this.init(element)
+      'max-width': [],
+    };
+    this.init(element);
   }
 
   /**
@@ -19,18 +19,18 @@ export default class VueElementQuery {
    * @param  {HTMLElement}  element
    * @return {void}
    */
-  init (element) {
-    this.setBreakpoints(element)
-    this.watchElement(element)
-    this.setInitialResize(element)
+  init(element) {
+    this.setBreakpoints(element);
+    this.watchElement(element);
+    this.setInitialResize(element);
   }
 
   /**
    * Fire the initial resize event
    * @param {HTMLElement} element
    */
-  setInitialResize (element) {
-    element.resizedAttached.call()
+  setInitialResize(element) {
+    element.resizedAttached.call();
   }
 
   /**
@@ -38,11 +38,11 @@ export default class VueElementQuery {
    * @param {HTMLElement} element
    * @return {void}
    */
-  watchElement (element) {
+  watchElement(element) {
     new this.ResizeSensor(element, () => {
-      element.setAttribute('min-width', this.setMinWidth(element.clientWidth))
-      element.setAttribute('max-width', this.setMaxWidth(element.clientWidth))
-    })
+      element.setAttribute('min-width', this.setMinWidth(element.clientWidth));
+      element.setAttribute('max-width', this.setMaxWidth(element.clientWidth));
+    });
   }
 
   /**
@@ -50,14 +50,14 @@ export default class VueElementQuery {
    * this element
    * @param {HTMLElement} element
    */
-  setBreakpoints (element) {
+  setBreakpoints(element) {
     this.crawlStylesheets(document, rules => {
       this.readRules(rules, rule => {
         if (this.matchesScope(element, rule.selectorText)) {
-          this.breakpoints[rule.selector].push(rule.value)
+          this.breakpoints[rule.selector].push(rule.value);
         }
-      })
-    })
+      });
+    });
   }
 
   /**
@@ -67,9 +67,9 @@ export default class VueElementQuery {
    * @param  {String} selectorText
    * @return {void}
    */
-  matchesScope (element, selectorText) {
-    let scope = this.getScopeTag(element)
-    return selectorText.match(scope)
+  matchesScope(element, selectorText) {
+    let scope = this.getScopeTag(element);
+    return selectorText.match(scope);
   }
 
   /**
@@ -78,14 +78,16 @@ export default class VueElementQuery {
    * @param  {RegExp}  regex
    * @return {RegExp}
    */
-  getScopeTag (element) {
+  getScopeTag(element) {
     // grab the scope tag from the element, such as `v-12jn123n123`
-    let scope = Object.keys(element.dataset).find(key => key.match(/v-/))
+    let scope = Object.keys(element.dataset).find(key => key.match(/v-/));
     if (!scope) {
-      console.error('[VueElementQuery] Vue element queries only work on scoped stylesheets. Did you forget to add `scoped` to your stylesheet?', element)
-      return null
+      throw new Error({
+        message:
+          '[VueElementQuery] Vue element queries only work on scoped stylesheets. Did you forget to add `scoped` to your stylesheet?',
+      });
     }
-    return new RegExp(scope)
+    return new RegExp(scope);
   }
 
   /**
@@ -93,10 +95,12 @@ export default class VueElementQuery {
    * queries. Example result: "500px 600px 900px"
    * @param {Number} elementWidth
    */
-  setMinWidth (elementWidth) {
-    return this.breakpoints['min-width'].reduce((string, key) => {
-      return elementWidth >= key ? string + key + 'px ' : string
-    }, '').slice(0, -1)
+  setMinWidth(elementWidth) {
+    return this.breakpoints['min-width']
+      .reduce((string, key) => {
+        return elementWidth >= key ? string + key + 'px ' : string;
+      }, '')
+      .slice(0, -1);
   }
 
   /**
@@ -104,10 +108,12 @@ export default class VueElementQuery {
    * queries. Example result: "500px 600px 900px"
    * @param {Number} elementWidth
    */
-  setMaxWidth (elementWidth) {
-    return this.breakpoints['max-width'].reduce((string, key) => {
-      return elementWidth <= key ? string + key + 'px ' : string
-    }, '').slice(0, -1)
+  setMaxWidth(elementWidth) {
+    return this.breakpoints['max-width']
+      .reduce((string, key) => {
+        return elementWidth <= key ? string + key + 'px ' : string;
+      }, '')
+      .slice(0, -1);
   }
 
   /**
@@ -117,9 +123,9 @@ export default class VueElementQuery {
    * @param  {Function}  callback
    * @return {void}
    */
-  crawlStylesheets (document, callback) {
+  crawlStylesheets(document, callback) {
     for (var i = 0, j = document.styleSheets.length; i < j; i++) {
-      this.ifValidRules(document.styleSheets[i], callback)
+      this.ifValidRules(document.styleSheets[i], callback);
     }
   }
 
@@ -129,9 +135,9 @@ export default class VueElementQuery {
    * @param  {Function}  callback
    * @return {void}
    */
-  ifValidRules (stylesheet, callback) {
+  ifValidRules(stylesheet, callback) {
     if (stylesheet.cssRules) {
-      callback(stylesheet.cssRules)
+      callback(stylesheet.cssRules);
     }
   }
 
@@ -140,10 +146,10 @@ export default class VueElementQuery {
    * @param  {CSSRuleList}  rules
    * @return {[type]}
    */
-  readRules (rules, callback) {
+  readRules(rules, callback) {
     this.crawlRules(rules, selectorText => {
-      callback(selectorText)
-    })
+      callback(selectorText);
+    });
   }
 
   /**
@@ -153,9 +159,10 @@ export default class VueElementQuery {
    * @param  {Function}  callback
    * @return {void}
    */
-  crawlRules (rules, callback) {
+  crawlRules(rules, callback) {
     for (var i = 0, j = rules.length; i < j; i++) {
-      if (rules[i].selectorText) this.getValidSelector(rules[i].selectorText, callback)
+      if (rules[i].selectorText)
+        this.getValidSelector(rules[i].selectorText, callback);
     }
   }
 
@@ -165,19 +172,19 @@ export default class VueElementQuery {
    * @param  {Function} callback
    * @return {void}
    */
-  getValidSelector (selectorText, callback) {
+  getValidSelector(selectorText, callback) {
     // List of valid selectors
-    const matches = ['min-width', 'max-width']
+    const matches = ['min-width', 'max-width'];
     // Check selector for a match, and if so execute the callback.
     matches.forEach(selector => {
       if (selectorText.indexOf(selector) !== -1) {
-        let regex = new RegExp(`${selector}~="(.*)px"]`)
+        let regex = new RegExp(`${selector}~="(.*)px"]`);
         callback({
           selectorText,
           selector,
-          value: selectorText.match(regex)[1]
-        })
+          value: selectorText.match(regex)[1],
+        });
       }
-    })
+    });
   }
 }
