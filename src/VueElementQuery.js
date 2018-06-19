@@ -130,7 +130,7 @@ export default class VueElementQuery {
    * @return {void}
    */
   ifValidRules (stylesheet, callback) {
-    if (stylesheet.cssRules) {
+    if (stylesheet.href === null && stylesheet.cssRules) {
       callback(stylesheet.cssRules)
     }
   }

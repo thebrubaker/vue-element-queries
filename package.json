@@ -1,14 +1,14 @@
 {
   "name": "vue-element-queries",
-  "version": "0.1.13",
+  "version": "0.3",
   "description": "A Vue directive for using element queries to build responsive components.",
-  "main": "index.js",
+  "main": "dist/vue-element-queries.common.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "vue build ./src -t lib"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thebrubaker/vue-element-queries.git"
+    "url": "git+https://github.com/Mattchewone/vue-element-queries.git"
   },
   "keywords": [
     "vue",
@@ -24,9 +24,9 @@
   "author": "Joel Brubaker",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thebrubaker/vue-element-queries/issues"
+    "url": "https://github.com/Mattchewone/vue-element-queries/issues"
   },
-  "homepage": "https://github.com/thebrubaker/vue-element-queries#readme",
+  "homepage": "https://github.com/Mattchewone/vue-element-queries#readme",
   "dependencies": {
     "css-element-queries": "^0.4.0"
   },
