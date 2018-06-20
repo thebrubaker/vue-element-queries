@@ -339,7 +339,7 @@ __webpack_require__.r(__webpack_exports__);
 // EXTERNAL MODULE: /Users/mattchaffe/.nvm/versions/node/v9.8.0/lib/node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
 var setPublicPath = __webpack_require__("fR5a");
 
-// CONCATENATED MODULE: ./VueElementQuery.js
+// CONCATENATED MODULE: ./src/VueElementQuery.js
 class VueElementQuery {
   /**
    * Constructor for the class
@@ -528,17 +528,25 @@ class VueElementQuery {
 var ResizeSensor = __webpack_require__("KtZj");
 var ResizeSensor_default = /*#__PURE__*/__webpack_require__.n(ResizeSensor);
 
-// CONCATENATED MODULE: ./Plugin.js
+// CONCATENATED MODULE: ./src/index.js
 
 
 
-/* harmony default export */ var Plugin = ({
+/* harmony default export */ var src = ({
   install (Vue, options) {
     Vue.directive('query', {
-      inserted (element) {
-        new VueElementQuery(ResizeSensor_default.a, element)
+      bind (element) {
+        const veq = new VueElementQuery(ResizeSensor_default.a, element)
+        element.__veq = veq
+      },
+      update (element) {
+        const state = element.__veq
+        if (state) {
+          state.setInitialResize(element)
+        }
       },
       unbind (element) {
+        delete element.__veq
         ResizeSensor_default.a.detach(element)
       }
     })
@@ -548,7 +556,7 @@ var ResizeSensor_default = /*#__PURE__*/__webpack_require__.n(ResizeSensor);
 // CONCATENATED MODULE: /Users/mattchaffe/.nvm/versions/node/v9.8.0/lib/node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (Plugin);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src);
 
 
 
