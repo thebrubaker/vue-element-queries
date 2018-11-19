@@ -179,11 +179,15 @@ export default class VueElementQuery {
     matches.forEach(selector => {
       if (selectorText.indexOf(selector) !== -1) {
         let regex = new RegExp(`${selector}~="(.*)px"]`);
-        callback({
-          selectorText,
-          selector,
-          value: selectorText.match(regex)[1],
-        });
+        const selectorTextMatches = selectorText.match(regex);
+        // check if selectorText matches the regex
+        if (selectorTextMatches && selectorTextMatches.length >= 2) {
+          callback({
+            selectorText,
+            selector,
+            value: selectorTextMatches[1],
+          });
+        }
       }
     });
   }
